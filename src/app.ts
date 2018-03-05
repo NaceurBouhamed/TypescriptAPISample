@@ -35,7 +35,7 @@ class App {
         // placeholder route handler
 
         router.get('*', (req, res, next) => {
-            this.contractService.createWallet();
+            this.contractService.getRecord("0xd93E83d9062c2F0baA201EA6592FE0cB50d9172b");
             res.json({
                 message: "Hello World!"
             });

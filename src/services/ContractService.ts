@@ -10,7 +10,7 @@ export class ContractService {
 
     GasPrice: any;
 
-    constructor() { 
+    constructor() {
         this.checkAndInstatiateWeb3();
     };
 
@@ -29,8 +29,41 @@ export class ContractService {
     }
 
     createWallet = () => {
-        console.log('hello mofos');
+        //console.log(this.web3);
+        this.web3.personal.newAccount("faza", function (err: any, res: any) {
+            if (!err) {
+                console.log(res);
+            }
+            else
+                console.log(err);
+        });
+    }
+
+    grantAccess = (address: string) => {
+        this.hblockService.grantAccess.sendTransaction(address, {
+            from: address, gas: "1000000", gasPrice: this.GasPrice
+        }, function (err: any, res: any) {
+            if (!err)   
+                console.log(res)
+        })
+    }
+
+    getRecord = (address:string) => {
+        let byte32 = this.hblockService.grantRecord.sendTransaction(address, {
+            from: address, gas: "1000000", gasPrice: this.GasPrice
+        }, function (err: any, res: any) {
+            if (!err)
+                console.log(res)
+        });
+        console.log(byte32);
     }
 
 
 }
+
+
+
+
+
+
+
