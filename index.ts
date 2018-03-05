@@ -1,12 +1,14 @@
 import * as http from 'http';
-import debug from 'debug';
 
+import debug from 'debug';
 import App from './src/app';
 
 debug('ts-express:server');
 
 const port = normalizePort(process.env.PORT || 3000);
+console.log('Server is running on localhost:'+ port);
 App.set('port', port);
+
 
 const server = http.createServer(App);
 server.listen(port);
