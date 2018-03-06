@@ -24,13 +24,13 @@ export class ContractService {
 
     checkAndInstatiateWeb3 = () => {
 
-        this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:30000"));
 
         //this.web3.eth.defaultAccount  =  '0x2420cb97b5791B7bC65dBe3C0001B28D1cA575ab';
 
         this.hblockContract = this.web3.eth.contract([{ "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "patients", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "patient", "type": "address" }], "name": "grantAccess", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addClinic", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "records", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "doc", "type": "address" }], "name": "addDoctor", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "patient", "type": "address" }], "name": "getRecord", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "clinics", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "patient", "type": "address" }, { "name": "hsh", "type": "string" }], "name": "appendToRecord", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "patient", "type": "address" }], "name": "addPatient", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "doctors", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "patient", "type": "address" }], "name": "forceGetRecord", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }]);
 
-        this.hblockService = this.hblockContract.at('0x2267c59e0b8b49dbe124281bc154988df740acb6');
+        this.hblockService = this.hblockContract.at('0x0ff8b5fc85c20fb7cf1d3e37f63c301e040877e0');
 
         this.GasPrice = this.web3.toWei(2, "gwei");
 
@@ -83,7 +83,6 @@ export class ContractService {
 
 
     getRecord = (from: string, to: string) => {
-        let web3i = this.web3;
 
         this.hblockService
             .getRecord.sendTransaction(to,
